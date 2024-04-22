@@ -4,9 +4,10 @@ import { useState } from "react";
 import Logo from "./NavBar/Logo";
 import Search from "./components/Search";
 import NumResult from "./NavBar/NumResult";
-import ListBox from "./Main/ListBox";
-import WatchedBox from "./Main/WatchedBox";
-import MovieList from "./Main/ListBox/MovieList/MovieList";
+import MovieList from "./Main/Box/MovieList";
+import WatchedSummary from "./Main/Box/WatchedSummary";
+import WatchedList from "./Main/Box/WatchedList";
+import Box from "./Main/Box";
 
 const tempMovieData = [
   {
@@ -31,8 +32,31 @@ const tempMovieData = [
       "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
   },
 ];
+const tempWatchedData = [
+  {
+    imdbID: "tt1375666",
+    Title: "Inception",
+    Year: "2010",
+    Poster:
+      "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    runtime: 148,
+    imdbRating: 8.8,
+    userRating: 10,
+  },
+  {
+    imdbID: "tt0088763",
+    Title: "Back to the Future",
+    Year: "1985",
+    Poster:
+      "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+    runtime: 116,
+    imdbRating: 8.5,
+    userRating: 9,
+  },
+];
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
   const [query, setQuery] = useState("");
   return (
     <>
@@ -42,10 +66,13 @@ export default function App() {
         <NumResult movies={movies} />
       </NavBar>
       <Main>
-        <ListBox>
+        <Box>
           <MovieList movies={movies} />
-        </ListBox>
-        <WatchedBox />
+        </Box>
+        <Box>
+          <WatchedSummary watched={watched} />
+          <WatchedList watched={watched} />
+        </Box>
       </Main>
     </>
   );
