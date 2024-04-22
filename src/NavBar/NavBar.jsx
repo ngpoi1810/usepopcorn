@@ -3,13 +3,12 @@ import Search from "../components/Search";
 import Logo from "./Logo";
 import NumResult from "./NumResult";
 
-export default function NavBar({movies}) {
-  const [query, setQuery] = useState("");
+export default function NavBar({ movies, children }) {
+  
   return (
     <nav className="nav-bar">
-      <Logo />
-      <Search query={query} setQuery={setQuery} />
-      <NumResult movies={movies} />
+      
+      {children}
     </nav>
   );
 }
