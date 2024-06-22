@@ -60,6 +60,7 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
   const [query, setQuery] = useState("");
+  const [loading, isLoading] = useState(false);
   const queryFilm = "interstella";
   useEffect(function () {
     async function fetchMovies() {
